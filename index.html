@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Обратный отсчёт</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #1e1e2f, #2b2b45);
+    font-family: Arial, sans-serif;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  #count {
+    font-size: 180px;
+    font-weight: bold;
+    text-shadow: 0 0 30px #00e5ff;
+    animation: pulse 1s infinite;
+  }
+
+  #text {
+    font-size: 32px;
+    margin-top: 30px;
+    opacity: 0;
+    transition: opacity 0.5s;
+    color: #ff4d6d;
+  }
+
+  @keyframes pulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.15); }
+    100% { transform: scale(1); }
+  }
+</style>
+</head>
+<body>
+
+<div id="count">10</div>
+<div id="text">Семён плохой мальчик</div>
+
+<script>
+  const countEl = document.getElementById('count');
+  const textEl = document.getElementById('text');
+  let count = 10;
+
+  const timer = setInterval(() => {
+    count--;
+    countEl.textContent = count;
+
+    if (count <= 0) {
+      clearInterval(timer);
+      countEl.textContent = "0";
+      countEl.style.color = "#ff4d6d";
+      countEl.style.textShadow = "0 0 30px #ff4d6d";
+      textEl.style.opacity = "1";
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>
